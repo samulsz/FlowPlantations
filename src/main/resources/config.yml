@@ -1,5 +1,5 @@
-database:
+db:
   database: ""
-  ip: ""
+  address: ""
   name: ""
   pass: ""
