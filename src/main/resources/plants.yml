@@ -1,0 +1,5 @@
+economy:
+  plant1:
+    material: WHEAT
+    fertilizers: 1.0
+    money: 100.0
