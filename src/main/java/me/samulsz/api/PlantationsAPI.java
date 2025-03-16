@@ -4,6 +4,7 @@ package me.samulsz.api;
 import me.samulsz.cache.UserCache;
 import me.samulsz.connections.MysqlConnection;
 import me.samulsz.managers.FileManager;
+import me.samulsz.managers.ToolManager;
 import me.samulsz.objects.LoadObjects;
 import org.bukkit.plugin.Plugin;
 
@@ -13,6 +14,7 @@ public class PlantationsAPI {
     private final LoadObjects loadObjects;
     private final UserCache userCache;
     private final MysqlConnection mysqlConnection;
+    private final ToolManager toolManager;
 
 
     public PlantationsAPI(Plugin plugin) {
@@ -21,6 +23,7 @@ public class PlantationsAPI {
         this.loadObjects = new LoadObjects(fileManager);
         this.mysqlConnection = new MysqlConnection(plugin);
         this.userCache = new UserCache(mysqlConnection);
+        this.toolManager = new ToolManager(this);
     }
 
     public LoadObjects getLoadObjects() {

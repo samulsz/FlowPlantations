@@ -3,3 +3,15 @@ db:
   address: ""
   name: ""
   pass: ""
+
+config:
+  worlds:
+    - 'allowed_world'
+tool:
+  material: DIAMOND_AXE
+  name: '§6Machado de Farm &8[{blocks}]'
+  lore:
+    - '&7Quebre suas plantações utilizando'
+    - '&7esta ferramenta!'
+    - ''
+    - '{enchants}'
