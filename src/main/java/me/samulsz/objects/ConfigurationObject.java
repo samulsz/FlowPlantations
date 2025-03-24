@@ -17,6 +17,6 @@ public class ConfigurationObject {
         return ALLOWED_WORDS;
     }
     public ItemStack getToolItem() {
-        return  TOOL_ITEM;
+        return TOOL_ITEM;
     }
 }

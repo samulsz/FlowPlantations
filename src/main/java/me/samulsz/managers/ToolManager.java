@@ -17,6 +17,6 @@ public class ToolManager {
     }
 
     public void buildTool() {
-        tool = plantationsAPI.getLoadObjects().getConfigurationObject().getToolItem();
+        tool = plantationsAPI.getNbtUtils().setBoolean(plantationsAPI.getLoadObjects().getConfigurationObject().getToolItem(), "plantations-tool", true);
     }
 }

@@ -6,6 +6,7 @@ import me.samulsz.connections.MysqlConnection;
 import me.samulsz.managers.FileManager;
 import me.samulsz.managers.ToolManager;
 import me.samulsz.objects.LoadObjects;
+import me.samulsz.utils.NbtUtils;
 import org.bukkit.plugin.Plugin;
 
 public class PlantationsAPI {
@@ -15,6 +16,7 @@ public class PlantationsAPI {
     private final UserCache userCache;
     private final MysqlConnection mysqlConnection;
     private final ToolManager toolManager;
+    private final NbtUtils nbtUtils;
 
 
     public PlantationsAPI(Plugin plugin) {
@@ -24,6 +26,8 @@ public class PlantationsAPI {
         this.mysqlConnection = new MysqlConnection(plugin);
         this.userCache = new UserCache(mysqlConnection);
         this.toolManager = new ToolManager(this);
+        this.nbtUtils = new NbtUtils();
+        nbtUtils.load();
     }
 
     public LoadObjects getLoadObjects() {
@@ -37,5 +41,12 @@ public class PlantationsAPI {
     }
     public  MysqlConnection getMysqlConnection() {
         return mysqlConnection;
+    }
+    public ToolManager getToolManager() {
+        return toolManager;
+    }
+
+    public NbtUtils getNbtUtils() {
+        return nbtUtils;
     }
 }
