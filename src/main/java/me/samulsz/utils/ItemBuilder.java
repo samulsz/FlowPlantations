@@ -2,10 +2,7 @@ package me.samulsz.utils;
 
 import com.mojang.authlib.GameProfile;
 import com.mojang.authlib.properties.Property;
-import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.SkullType;
+import org.bukkit.*;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -26,10 +23,12 @@ public class ItemBuilder {
     private ItemStack itemStack;
 
     private ItemMeta itemMeta;
+    private NbtUtils  nbtUtils;
 
     public ItemBuilder(Material material) {
         itemStack = new ItemStack(material);
         itemMeta = itemStack.getItemMeta();
+        nbtUtils = new NbtUtils();
     }
 
     public ItemBuilder(Material material, int amount, int data) {
@@ -159,6 +158,24 @@ public class ItemBuilder {
     public ItemBuilder acceptItemMeta(Consumer<ItemMeta> consumer) {
         consumer.accept(itemMeta);
         return this;
+    }
+
+    public ItemBuilder setString(String tag, String value) {
+        itemStack = nbtUtils.setString(itemStack, tag, value);
+        return this;
+    }
+
+    public String getString(String tag) {
+        return nbtUtils.getString(itemStack, tag);
+    }
+
+    public ItemBuilder setInt(String tag, int value) {
+        itemStack = nbtUtils.setInt(itemStack, tag, value);
+        return this;
+    }
+
+    public int getInt(String tag) {
+        return nbtUtils.getInt(itemStack, tag);
     }
 
     public ItemBuilder enchantment(Enchantment enchantment, int level) {

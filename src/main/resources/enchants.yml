@@ -17,3 +17,21 @@ enchants:
       - '&f  Custo: &2჻&a{moedas}'
       - ''
       - '&6Clique para evoluir'
+  multiplier:
+    level:
+      default: 0
+      max: 100
+    price: 1000 #fertilizantes
+    multiplier: 0.03 #Ignore no enchant fortuna
+    area: 4 #Ignore no enchant fortuna
+    icon:
+      name: '§eFortuna &7[{has}]'
+      head: ''
+      lore:
+        - '&7Multiplique suas plantações ao'
+        - '&7quebrá-las em seu terreno'
+        - ''
+        - '&f  Nível: &7{atual}/{maximo} &8[{porcentagem}%]'
+        - '&f  Custo: &2჻&a{moedas}'
+        - ''
+        - '&6Clique para evoluir'

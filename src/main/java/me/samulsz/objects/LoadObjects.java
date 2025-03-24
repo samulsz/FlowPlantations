@@ -18,9 +18,11 @@ public class LoadObjects {
         this.fileManager = fileManager;
     }
 
-    private static HashMap<String, PlantsObject> plants = new HashMap<>();
-    private static HashMap<String, EnchantsObject> enchants = new HashMap<>();
+    private static final HashMap<String, PlantsObject> plants = new HashMap<>();
+    private static final HashMap<String, EnchantsObject> enchants = new HashMap<>();
     private static ConfigurationObject configurationObject;
+    private static ToolObject toolObject;
+
     public void load(){
         //loading plants
         FileConfiguration plantsConfig = fileManager.getConfig("plants.yml");
@@ -50,13 +52,14 @@ public class LoadObjects {
         //loading configuration
         FileConfiguration config = Bukkit.getPluginManager().getPlugin("FlowPlantacoes").getConfig();
         configurationObject = new ConfigurationObject(
-                config.getStringList("config.worlds"),
-                new ItemBuilder(Material.matchMaterial(config.getString("tool.material")))
-                        .name(config.getString("tool.name").replace("&", "§"))
-                        .lore(config.getStringList("tool.lore").stream()
-                                .map(line -> line.replace("&", "§"))
-                                .collect(Collectors.toList()))
-                        .getItemStack()
+                config.getStringList("config.worlds")
+        );
+
+        //loading tool object
+        toolObject = new ToolObject(
+                Material.matchMaterial(config.getString("tool.material")),
+                config.getString("tool.name"),
+                config.getStringList("tool.lore")
         );
     }
     public HashMap<String, PlantsObject> getPlants(){
@@ -68,5 +71,9 @@ public class LoadObjects {
     }
     public ConfigurationObject getConfigurationObject() {
         return configurationObject;
+    }
+
+    public ToolObject getToolObject() {
+        return toolObject;
     }
 }

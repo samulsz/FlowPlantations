@@ -6,7 +6,7 @@ db:
 
 config:
   worlds:
-    - 'allowed_world'
+    - 'world'
 tool:
   material: DIAMOND_AXE
   name: '§6Machado de Farm &8[{blocks}]'
