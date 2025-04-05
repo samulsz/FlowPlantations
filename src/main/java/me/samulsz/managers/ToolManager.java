@@ -9,6 +9,10 @@ import me.samulsz.utils.NbtUtils;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.List;
+
 public class ToolManager {
     private static ItemStack tool;
     private final PlantationsAPI plantationsAPI;
@@ -22,9 +26,12 @@ public class ToolManager {
     }
 
     public void buildTool() {
+        List<String> enchants = new ArrayList<>();
+        enchants.add("Fortuna 0");
+        enchants.add("Multiplicador 0");
         ItemStack item = new ItemBuilder(toolObject.getMaterial())
                 .name(toolObject.getName().replace("{blocks}", "0"))
-                .lore(toolObject.getLore())
+                .lore(String.valueOf(toolObject.getLore().addAll(enchants)))
                 .build();
 
         tool = nbtUtils.setBoolean(item, "plantations-tool", true);

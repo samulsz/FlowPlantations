@@ -1,0 +1,17 @@
+me\samulsz\managers\FileManager.class
+me\samulsz\objects\ToolObject.class
+me\samulsz\objects\ConfigurationObject.class
+me\samulsz\objects\PlantsObject.class
+me\samulsz\utils\NbtUtils.class
+me\samulsz\api\PlantationsAPI.class
+me\samulsz\managers\EnchantmentsManager.class
+me\samulsz\managers\ToolManager.class
+me\samulsz\connections\MysqlConnection.class
+me\samulsz\FlowPlantacoes.class
+me\samulsz\libs\ActionbarAPI.class
+me\samulsz\utils\ItemBuilder.class
+me\samulsz\commands\ToolCommand.class
+me\samulsz\listeners\BlockBreakListener.class
+me\samulsz\objects\EnchantsObject.class
+me\samulsz\cache\UserCache.class
+me\samulsz\objects\LoadObjects.class

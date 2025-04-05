@@ -1,8 +1,10 @@
 package me.samulsz;
 
 import jdk.nashorn.internal.objects.annotations.Getter;
+import me.saiintbrisson.bukkit.command.BukkitFrame;
 import me.samulsz.api.PlantationsAPI;
 import me.samulsz.cache.UserCache;
+import me.samulsz.commands.ToolCommand;
 import me.samulsz.connections.MysqlConnection;
 import me.samulsz.listeners.BlockBreakListener;
 import me.samulsz.managers.FileManager;
@@ -40,5 +42,8 @@ public class FlowPlantacoes extends JavaPlugin {
         toolManager.buildTool();
         //registering events
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(plantationsAPI), this);
+        //registering commands
+        BukkitFrame frame = new BukkitFrame(this);
+        frame.registerCommands(new ToolCommand(plantationsAPI));
     }
 }
