@@ -2,6 +2,7 @@ me\samulsz\managers\FileManager.class
 me\samulsz\objects\ToolObject.class
 me\samulsz\objects\ConfigurationObject.class
 me\samulsz\objects\PlantsObject.class
+me\samulsz\listeners\PlayerLoginListener.class
 me\samulsz\utils\NbtUtils.class
 me\samulsz\api\PlantationsAPI.class
 me\samulsz\managers\EnchantmentsManager.class

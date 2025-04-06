@@ -26,18 +26,18 @@ public class MysqlConnection {
         String url = "jdbc:mysql://" + host + "/" + database + "?autoReconnect=true";
         try {
             mysql = DriverManager.getConnection(url, username, password);
-            PreparedStatement statement = mysql.prepareStatement("CREATE TABLE IF NOT EXISTS `flow-economy` (`playerName` VARCHAR(16), `coins` FLOAT(53))");
+            PreparedStatement statement = mysql.prepareStatement("CREATE TABLE IF NOT EXISTS `flow-plantations` (`playerName` VARCHAR(16), `coins` FLOAT(53))");
             statement.executeUpdate();
             statement.close();
             load();
         } catch (SQLException e) {
             e.printStackTrace();
-            Bukkit.getConsoleSender().sendMessage("§c[Floweconomy] error on connect to mysql database!");
+            Bukkit.getConsoleSender().sendMessage("§c[FlowPlantations] error on connect to mysql database!");
         }
     }
     public void load() {
         try {
-            PreparedStatement statement = mysql.prepareStatement("SELECT * FROM `flow-economy`;");
+            PreparedStatement statement = mysql.prepareStatement("SELECT * FROM `flow-plantations`;");
             ResultSet query = statement.executeQuery();
             while (query.next()) {
                 if (!map.containsKey(query.getString("playerName"))) {
@@ -61,7 +61,7 @@ public class MysqlConnection {
 
     public boolean exists(String playerName) {
         try {
-            PreparedStatement statement = mysql.prepareStatement("SELECT * FROM `flow-economy` WHERE `playerName` = ?;");
+            PreparedStatement statement = mysql.prepareStatement("SELECT * FROM `flow-plantations` WHERE `playerName` = ?;");
             statement.setString(1, playerName);
             ResultSet query = statement.executeQuery();
             boolean exists = query.next();
@@ -78,7 +78,7 @@ public class MysqlConnection {
     public void save(String playerName){
         if (exists(playerName)){
             try {
-                PreparedStatement statement = mysql.prepareStatement("UPDATE `flow-economy` SET `coins` = ? WHERE `playerName` = ?;");
+                PreparedStatement statement = mysql.prepareStatement("UPDATE `flow-plantations` SET `coins` = ? WHERE `playerName` = ?;");
                 statement.setDouble(1, getCoinsFromPlayer(playerName));
                 statement.setString(2, playerName);
                 statement.executeUpdate();
@@ -88,7 +88,7 @@ public class MysqlConnection {
             }
         }else {
             try {
-                PreparedStatement statement = mysql.prepareStatement("INSERT INTO `flow-economy` (`playerName`, `coins`) VALUES (?, ?);");
+                PreparedStatement statement = mysql.prepareStatement("INSERT INTO `flow-plantations` (`playerName`, `coins`) VALUES (?, ?);");
                 statement.setString(1, playerName);
                 statement.setDouble(2, getCoinsFromPlayer(playerName));
                 statement.executeUpdate();
@@ -101,7 +101,7 @@ public class MysqlConnection {
 
     public double getDouble(String playerName) {
         try {
-            PreparedStatement statement = mysql.prepareStatement("SELECT `coins` FROM `flow-economy` WHERE `playerName` = ?;");
+            PreparedStatement statement = mysql.prepareStatement("SELECT `coins` FROM `flow-plantations` WHERE `playerName` = ?;");
             statement.setString(1, playerName);
             ResultSet query = statement.executeQuery();
             double coins = 0.0;
@@ -130,7 +130,7 @@ public class MysqlConnection {
         } else {
             if (exists(playerName)) {
                 try {
-                    PreparedStatement statement = mysql.prepareStatement("UPDATE `flow-economy` SET `coins` = ? WHERE `playerName` = ?;");
+                    PreparedStatement statement = mysql.prepareStatement("UPDATE `flow-plantations` SET `coins` = ? WHERE `playerName` = ?;");
                     statement.setDouble(1, coins);
                     statement.setString(2, playerName);
                     statement.executeUpdate();
@@ -140,7 +140,7 @@ public class MysqlConnection {
                 }
             } else {
                 try {
-                    PreparedStatement statement = mysql.prepareStatement("INSERT INTO `flow-economy` (`playerName`, `coins`) VALUES (?, ?);");
+                    PreparedStatement statement = mysql.prepareStatement("INSERT INTO `flow-plantations` (`playerName`, `coins`) VALUES (?, ?);");
                     statement.setString(1, playerName);
                     statement.setDouble(2, coins);
                     statement.executeUpdate();

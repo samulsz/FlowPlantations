@@ -27,8 +27,8 @@ public class PlantationsAPI {
         this.mysqlConnection = new MysqlConnection(plugin);
         this.userCache = new UserCache(mysqlConnection);
         this.toolManager = new ToolManager(this);
+        new NbtUtils().load();
         this.nbtUtils = new NbtUtils();
-        nbtUtils.load();
     }
 
     public LoadObjects getLoadObjects() {

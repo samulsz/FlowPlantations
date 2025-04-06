@@ -22,7 +22,7 @@ enchants:
       default: 0
       max: 100
     price: 1000 #fertilizantes
-    multiplier: 0.03 #Ignore no enchant fortuna
+    multiplier: 0.03
     area: 4 #Ignore no enchant fortuna
     icon:
       name: '§eFortuna &7[{has}]'

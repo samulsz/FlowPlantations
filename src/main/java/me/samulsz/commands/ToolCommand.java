@@ -18,7 +18,7 @@ public class ToolCommand {
 
     @Command(name = "tool", aliases = {"gettool"}, target = CommandTarget.PLAYER)
     public void handleCommandChild(Context<Player> context) {
-        Player p = (context.getSender());
-        p.setItemInHand(plantationsAPI.getToolManager().getTool());
+        Player p = context.getSender();
+        p.getInventory().addItem(plantationsAPI.getToolManager().getTool());
     }
 }

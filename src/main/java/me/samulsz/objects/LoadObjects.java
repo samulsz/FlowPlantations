@@ -25,17 +25,17 @@ public class LoadObjects {
 
     public void load(){
         //loading plants
-        FileConfiguration plantsConfig = fileManager.getConfig("plants.yml");
-        for (String key : plantsConfig.getConfigurationSection("economy").getKeys(false)) {
+        FileConfiguration plantsConfig = fileManager.getConfig("plants");
+        for (String key : plantsConfig.getConfigurationSection("economy.").getKeys(false)) {
             PlantsObject plant = new PlantsObject(
-                    Material.matchMaterial(plantsConfig.getString("enchants." + key + ".material")),
-                    plantsConfig.getDouble("enchants." + key + ".fertilizers"),
-                    plantsConfig.getDouble("enchants." + key + ".money")
+                    Material.matchMaterial(plantsConfig.getString("economy." + key + ".material")),
+                    plantsConfig.getDouble("economy." + key + ".fertilizers"),
+                    plantsConfig.getDouble("economy." + key + ".money")
             );
             plants.put(key, plant);
         }
         //loading enchants
-        FileConfiguration enchantsConfig = fileManager.getConfig("enchants.yml");
+        FileConfiguration enchantsConfig = fileManager.getConfig("enchants");
         for (String key : enchantsConfig.getConfigurationSection("enchants").getKeys(false)) {
             EnchantsObject enchant = new EnchantsObject(
                     enchantsConfig.getInt("enchants." + key + ".level.default"),

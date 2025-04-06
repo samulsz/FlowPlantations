@@ -21,9 +21,8 @@ import java.util.stream.Collectors;
 public class ItemBuilder {
 
     private ItemStack itemStack;
-
     private ItemMeta itemMeta;
-    private NbtUtils  nbtUtils;
+    private NbtUtils nbtUtils;
 
     public ItemBuilder(Material material) {
         itemStack = new ItemStack(material);
@@ -176,6 +175,15 @@ public class ItemBuilder {
 
     public int getInt(String tag) {
         return nbtUtils.getInt(itemStack, tag);
+    }
+
+    public ItemBuilder setBoolean(String tag, boolean value) {
+        itemStack = nbtUtils.setBoolean(itemStack, tag, value);
+        return this;
+    }
+
+    public boolean getBoolean(String tag) {
+        return nbtUtils.getBoolean(itemStack, tag);
     }
 
     public ItemBuilder enchantment(Enchantment enchantment, int level) {

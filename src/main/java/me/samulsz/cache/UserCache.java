@@ -40,18 +40,22 @@ public class UserCache {
         cache.put(playerName, newCoins);
     }
 
-    public boolean createPlayer(String playerName) {
+    public void createPlayer(String playerName) {
         if (!cache.containsKey(playerName)) {
             boolean created = mysqlConnection.createPlayer(playerName);
             if (created) {
                 cache.put(playerName, 0.0);
             }
-            return created;
         }
-        return false;
     }
 
     public boolean exists(String playerName) {
         return cache.containsKey(playerName) || mysqlConnection.exists(playerName);
+    }
+
+    public void saveAll(){
+        for (Map.Entry<String, Double> entry : mysqlConnection.getMap().entrySet()) {
+            mysqlConnection.save(entry.getKey());
+        }
     }
 }

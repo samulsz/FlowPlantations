@@ -7,6 +7,7 @@ import me.samulsz.cache.UserCache;
 import me.samulsz.commands.ToolCommand;
 import me.samulsz.connections.MysqlConnection;
 import me.samulsz.listeners.BlockBreakListener;
+import me.samulsz.listeners.PlayerLoginListener;
 import me.samulsz.managers.FileManager;
 import me.samulsz.managers.ToolManager;
 import me.samulsz.objects.LoadObjects;
@@ -22,26 +23,28 @@ public class FlowPlantacoes extends JavaPlugin {
 
     public void onEnable() {
         plantationsAPI = new PlantationsAPI(this); //loading the mysql here
-        setup();
         fileManager = plantationsAPI.getFileManager();
         loadObjects = plantationsAPI.getLoadObjects();
         mysqlConnection = plantationsAPI.getMysqlConnection();
         toolManager = plantationsAPI.getToolManager();
+        setup();
     }
 
     public void onDisable() {
+        plantationsAPI.getUserCache().saveAll();
     }
 
     private void setup(){
         //loading files
         saveDefaultConfig();
-        fileManager.createConfig("plants.yml");
-        fileManager.createConfig("enchants.yml");
+        fileManager.createConfig("plants");
+        fileManager.createConfig("enchants");
         //loading objects
         loadObjects.load();
         toolManager.buildTool();
         //registering events
         Bukkit.getPluginManager().registerEvents(new BlockBreakListener(plantationsAPI), this);
+        Bukkit.getPluginManager().registerEvents(new PlayerLoginListener(plantationsAPI), this);
         //registering commands
         BukkitFrame frame = new BukkitFrame(this);
         frame.registerCommands(new ToolCommand(plantationsAPI));
